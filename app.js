@@ -3,6 +3,15 @@ var createError = require('http-errors');
 var express = require('express');
 var mo = require('./model/user_model')
 var path = require('path');
+var client = require('redis').createClient({
+  host : process.env.HOST,
+  port : 5902,
+  password: process.env.REDIS_PASSSWORD
+});
+client.on('connect', err => {
+  console.log('Error ' + err);
+console.log(client.connected)
+});
 const mongoose = require('mongoose')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
