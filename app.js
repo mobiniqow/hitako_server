@@ -2,16 +2,7 @@ require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var mo = require('./model/user_model')
-var path = require('path');
-var client = require('redis').createClient({
-  host : process.env.HOST,
-  port : 5902,
-  password: process.env.REDIS_PASSSWORD
-});
-client.on('connect', err => {
-  console.log('Error ' + err);
-console.log(client.connected)
-});
+var path = require('path'); 
 const mongoose = require('mongoose')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -31,8 +22,7 @@ mongoose.connect(uri,  {
   useNewUrlParser: true,
   useUnifiedTopology: true
 },function(err) {
-  if (err) throw err;
-  console.log(err);
+  if (err) throw err; 
 });
 
 app.use(cookieParser());
@@ -48,7 +38,5 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-let ss = new mo({title:"asdfasdf"})
-ss.save()
+}); 
 module.exports = app;
