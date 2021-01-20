@@ -1,11 +1,11 @@
 const redis = require('redis')
-const utilities = require('./helpers') 
+const utilities = require('../util/helpers') 
 const { promisify } = require('util');
 const client = redis.createClient({
     host : process.env.HOST,
     port : 5902,
     password: process.env.REDIS_PASSSWORD
-  });
+  }); 
 const setAsync = promisify(client.set).bind(client);
 const getAsync = promisify(client.get).bind(client);
   client.on('connect', err => {
@@ -23,11 +23,17 @@ module.exports = {
         return code;
     },
     is_verify:async function(phone_number,code){
-      let redis_code = await getAsync(phone_number)
-        if(code == redis_code){
-            return true
+        let redis_code = await getAsync(phone_number)
+        if(redis_code){
+         console.log(redis_code);
+            if(code == redis_code){
+                return true
+            }else{
+                return false
+            }
         }else{
             return false
         }
+       
     },
 }
