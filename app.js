@@ -2,7 +2,9 @@ require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var mo = require('./model/user_model')
-var path = require('path'); 
+var path = require('path');
+const cors = require('cors');
+const User = require('./model/user_model')
 const authRouter = require('./router/auth')
 const mongoose = require('mongoose')
 var cookieParser = require('cookie-parser');
@@ -11,6 +13,7 @@ var logger = require('morgan');
 var app = express();
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false })); 
 mongoose.set('useCreateIndex', true);
 const uri =  process.env.MONGO_DB_URL
@@ -38,6 +41,6 @@ app.use(cookieParser());
 //   // render the error page
 //   res.status(err.status || 500);
 //   res.render('error');
-// }); 
-app.use("/auth",authRouter)
+// });  
+app.use("/api",authRouter)
 module.exports = app;
