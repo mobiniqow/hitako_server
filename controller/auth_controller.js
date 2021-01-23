@@ -1,5 +1,6 @@
 const userService = require('../service/auth_service')
 const validation = require('../util/validation')
+var http = require('http');
 module.exports = {
      user_register :async function(req,res,next){
         let {phone} = req.body
@@ -55,5 +56,26 @@ module.exports = {
                 })
             }
         
+     },
+
+     getUserPlan : async function(req , res){
+
+
+       
+           // console.log(req.get('Token'),"hhhhh")
+        
+           // userService.getPlan(req.get('Token'))
+
+
+     
+
+      //  return res.json({
+         //   message:req.body.token,
+          //  test:req.token
+
+   //     })
+
      }
+
+     
 }

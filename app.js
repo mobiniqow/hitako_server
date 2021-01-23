@@ -41,12 +41,6 @@ mongoose.connect(uri,  {
   if (err) throw err; 
 });
 
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-
-
 app.use(cookieParser());
 // app.use(function(req, res, next) {
 //   next(createError(404));
@@ -59,12 +53,12 @@ app.use(cookieParser());
 //   // render the error page
 //   res.status(err.status || 500);
 //   res.render('error');
-<<<<<<< HEAD
+
 // }); 
 app.use("/auth",authRouter)
 
-=======
+
 // });  
 app.use("/api",authRouter)
->>>>>>> main
+
 module.exports = app;

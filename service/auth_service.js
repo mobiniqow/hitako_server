@@ -18,5 +18,16 @@ module.exports = {
         } else{
             return false
         }
+    },
+    getPlan :async function(token){
+        let user=await userRepo.getUserByToken(token)
+
+        if(user){
+            return user.user_plan;
+        }else{
+            return false;
+        }
     }
+
+
 }

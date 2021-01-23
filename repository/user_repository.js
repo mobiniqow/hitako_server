@@ -23,5 +23,15 @@ module.exports = {
         }else{
             return false
         }
+    },
+
+
+    getUserByToken: async function(token){
+        let user = await User.find({token}).exec()
+        if(user){
+           return user[0]
+        }else{
+            return false
+        }
     }
 }

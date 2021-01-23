@@ -11,7 +11,9 @@ const mongoose = require ('mongoose');
     token :  String, // token   // verify code 
     created_at :  Number, // String is shorthand for {type: String}
     updated_at :  Number, // String is shorthand for {type: String}
-    user_type :  String, // String is shorthand for {type: String}
+    user_plan :  { 
+      type:Number,
+       default:0}, // String is shorthand for {type: String}
     user_cridit_one :  String, // String is shorthand for {type: String}
     user_cridit_two :  String, // // String is shorthand for {type: String}
   });
